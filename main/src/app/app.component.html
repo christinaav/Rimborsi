@@ -1,0 +1,63 @@
+<div>
+  <nav
+    class="navbar navbar-expand-lg navbar-dark"
+    style="background-color:  #e91e63;"
+  >
+    <a class="navbar-brand" href="#">
+      <img
+        src="assets\Pics\1568373.png"
+        width="50"
+        height="50"
+        class="d-inline-block align-top"
+        alt=""
+      />
+
+      Customer Help
+    </a>
+  </nav>
+</div>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title style="font-size: xx-large;">
+        Inserisci alcuni dati per noi</mat-card-title
+      >
+    </mat-card-header>
+
+    <form class="example-form">
+      <mat-card-content>
+        <mat-form-field
+          class="example-full-width"
+          style="width:23vw; font-size: larger;"
+        >
+          <input matInput placeholder="Nome e Cognome" />
+        </mat-form-field>
+
+        <mat-form-field
+          class="example-full-width"
+          style="width:23vw; font-size: larger;"
+        >
+          <input matInput placeholder="Nome ordine" />
+        </mat-form-field>
+        <mat-form-field
+          class="example-full-width"
+          style="width:23vw; font-size: larger;"
+        >
+          <mat-label>Motivo del reclamo</mat-label>
+          <mat-select [(value)]="selected">
+            <mat-option [value]="roles" *ngFor="let roles of Roles"
+              >{{ roles }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+      <button
+        mat-stroked-button
+        style="background-color:  #e91e63;"
+        class="btn-block"
+      >
+        Invia
+      </button>
+    </form>
+  </mat-card>
+</div>
