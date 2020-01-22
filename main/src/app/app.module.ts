@@ -36,9 +36,10 @@ import { MatSortModule } from "@angular/material/sort";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { DanneggiamentoComponent } from './danneggiamento/danneggiamento.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DanneggiamentoComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

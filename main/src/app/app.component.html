@@ -24,27 +24,42 @@
       >
     </mat-card-header>
 
-    <form class="example-form">
+    <form #myform="ngForm" (ngSubmit)="onSubmit(myform)" class="example-form">
       <mat-card-content>
         <mat-form-field
           class="example-full-width"
           style="width:23vw; font-size: larger;"
         >
-          <input matInput placeholder="Nome e Cognome" />
+          <input
+            (change)="($event.target.value)"
+            required="true"
+            matInput
+            placeholder="Nome e Cognome"
+            name="name"
+            ngModel
+          />
         </mat-form-field>
 
         <mat-form-field
           class="example-full-width"
           style="width:23vw; font-size: larger;"
         >
-          <input matInput placeholder="Nome ordine" />
+          <input
+            (change)="($event.target.value)"
+            required="true"
+            matInput
+            placeholder="Nome ordine"
+            name="ordine"
+            ngModel
+          />
         </mat-form-field>
         <mat-form-field
           class="example-full-width"
           style="width:23vw; font-size: larger;"
         >
           <mat-label>Motivo del reclamo</mat-label>
-          <mat-select [(value)]="selected">
+
+          <mat-select [(value)]="selected" name="tipologia">
             <mat-option [value]="roles" *ngFor="let roles of Roles"
               >{{ roles }}
             </mat-option>
