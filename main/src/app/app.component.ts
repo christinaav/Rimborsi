@@ -2,16 +2,31 @@ import { Component, OnInit } from "@angular/core";
 import { ngModuleJitUrl } from "@angular/compiler";
 import { NgForm } from "@angular/forms";
 
+/*export interface Tipologia {
+  value: string;
+  viewValue: string;
+}*/
+
+export interface Type {
+  viewValue: string;
+}
+
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements OnInit {
-  Roles: any = ["Smarrimento", "Danneggiamento", "Non conformità", "Altro"];
-  utente: string = "";
-  ordine: string = "";
-  reclamo: string = "";
+  utente: string;
+  ordine: string;
+  reclamo: string;
+
+  types: Type[] = [
+    { viewValue: "Smarrimento" },
+    { viewValue: "Danneggiamento" },
+    { viewValue: "Non conformità" },
+    { viewValue: "Altro" }
+  ];
 
   constructor() {}
 
@@ -22,14 +37,6 @@ export class AppComponent implements OnInit {
     console.log(this.utente);
     this.ordine = form.value.ordine;
     console.log(this.ordine);
-  }
-
-  selected(event) {
-    let target = event.source.selected._element.nativeElement;
-    let selectedData = {
-      value: event.value,
-      text: target.innerText.trim()
-    };
-    console.log(selectedData);
+    console.log(this.reclamo);
   }
 }

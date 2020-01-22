@@ -59,11 +59,23 @@
         >
           <mat-label>Motivo del reclamo</mat-label>
 
-          <mat-select [(value)]="selected" name="tipologia">
-            <mat-option [value]="roles" *ngFor="let roles of Roles"
-              >{{ roles }}
+          <mat-select [(ngModel)]="reclamo" name="type">
+            <mat-option *ngFor="let type of types" [value]="type.viewValue">
+              {{ type.viewValue }}
             </mat-option>
           </mat-select>
+
+          <!--- <mat-select [(ngModel)]="selectedValue" name="roles">
+            <mat-option *ngFor="let roles of Roles" [value]="roles.value">
+              {{ roles.viewValue }}
+            </mat-option>
+          </mat-select>-->
+
+          <!----<mat-select [(value)]="selected" name="roles">
+            <mat-option [value]="roles.value" *ngFor="let roles of Roles"
+              >{{ roles.value }}
+            </mat-option>
+          </mat-select>-->
         </mat-form-field>
       </mat-card-content>
       <button
