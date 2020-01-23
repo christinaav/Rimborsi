@@ -36,10 +36,11 @@ import { MatSortModule } from "@angular/material/sort";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { DanneggiamentoComponent } from './danneggiamento/danneggiamento.component';
+import { WelcomeComponent } from "./welcome/welcome.component";
+import { SmarrimentoComponent } from './smarrimento/smarrimento.component';
 
 @NgModule({
-  declarations: [AppComponent, DanneggiamentoComponent],
+  declarations: [AppComponent, WelcomeComponent, SmarrimentoComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

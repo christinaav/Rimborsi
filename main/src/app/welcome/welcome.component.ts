@@ -1,17 +1,17 @@
 import { Component, OnInit } from "@angular/core";
-import { ngModuleJitUrl } from "@angular/compiler";
 import { NgForm } from "@angular/forms";
+import { Router } from "@angular/router";
 
 export interface Type {
   viewValue: string;
 }
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  selector: "app-welcome",
+  templateUrl: "./welcome.component.html",
+  styleUrls: ["./welcome.component.scss"]
 })
-export class AppComponent implements OnInit {
+export class WelcomeComponent implements OnInit {
   utente: string;
   ordine: string;
   reclamo: string;
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
 
   loadComponent = false;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit;
 
@@ -38,6 +38,7 @@ export class AppComponent implements OnInit {
   }
 
   changeChildComponent() {
-    this.loadComponent = true;
+    console.log("Sono dentro");
+    this.router.navigate(["smarrimento"]);
   }
 }
