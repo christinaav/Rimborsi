@@ -1,61 +1,211 @@
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
   <mat-card class="box">
-    <mat-card-header>
-      <mat-card-title style="font-size: xx-large;">
-        Inserisci alcuni dati per noi</mat-card-title
-      >
-    </mat-card-header>
-
-    <form #myform="ngForm" (ngSubmit)="onSubmit(myform)" class="example-form">
-      <mat-card-content>
-        <mat-form-field
-          class="example-full-width"
-          style="width:23vw; font-size: larger;"
+    <!-- Inizio subscribe -->
+    <div *ngIf="!subscribe">
+      <mat-card-header>
+        <mat-card-title style="font-size: xx-large;">
+          Inserisci alcuni dati per noi</mat-card-title
         >
-          <input
-            (change)="($event.target.value)"
-            required="true"
-            matInput
-            placeholder="Nome e Cognome"
-            name="name"
-            ngModel
-          />
-        </mat-form-field>
+      </mat-card-header>
 
-        <mat-form-field
-          class="example-full-width"
-          style="width:23vw; font-size: larger;"
-        >
-          <input
-            (change)="($event.target.value)"
-            required="true"
-            matInput
-            placeholder="Nome ordine"
-            name="ordine"
-            ngModel
-          />
-        </mat-form-field>
-        <mat-form-field
-          class="example-full-width"
-          style="width:23vw; font-size: larger;"
-        >
-          <mat-label>Motivo del reclamo</mat-label>
+      <!-- inizio del form -->
+      <form #myform="ngForm" (ngSubmit)="onSubmit(myform)" class="example-form">
+        <mat-card-content>
+          <!-- Nome dell'utente -->
+          <mat-form-field
+            class="example-full-width"
+            style="width:23vw; font-size: larger;"
+          >
+            <input
+              (change)="($event.target.value)"
+              required="true"
+              matInput
+              placeholder="Nome e Cognome"
+              name="name"
+              ngModel
+            />
+          </mat-form-field>
 
-          <mat-select [(ngModel)]="reclamo" name="type">
-            <mat-option *ngFor="let type of types" [value]="type.viewValue">
-              {{ type.viewValue }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </mat-card-content>
+          <!-- nome dell'ordine  -->
+          <mat-form-field
+            class="example-full-width"
+            style="width:23vw; font-size: larger;"
+          >
+            <input
+              (change)="($event.target.value)"
+              required="true"
+              matInput
+              placeholder="Nome ordine"
+              name="ordine"
+              ngModel
+            />
+          </mat-form-field>
+
+          <!-- Motivo del reclamo -->
+          <mat-form-field
+            class="example-full-width"
+            style="width:23vw; font-size: larger;"
+          >
+            <mat-label>Motivo del reclamo</mat-label>
+
+            <mat-select [(ngModel)]="reclamo" name="type" required="true">
+              <mat-option *ngFor="let type of types" [value]="type.viewValue">
+                {{ type.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Data del reclamo -->
+          <mat-form-field style="width:23vw; font-size: larger;">
+            <input
+              (change)="($event.target.value)"
+              required="true"
+              matInput
+              name="dataOrdine"
+              ngModel
+              [matDatepicker]="picker"
+              placeholder="Data dell'ordine"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <!-- Bottone invio form -->
+        </mat-card-content>
+        <button
+          mat-stroked-button
+          style="background-color:  #e91e63;"
+          class="btn-block"
+          (click)="(onSubmit)"
+        >
+          Invia
+        </button>
+      </form>
+      <!-- Fine del form  -->
+
+      <!-- Fine subscribe -->
+    </div>
+
+    <!-- Caso: smarrimento -->
+    <div *ngIf="smarrimento" class="first-option">
+      <mat-card-header>
+        <mat-card-title style="font-size: x-large;">
+          <span style="color: #e91e63;">
+            {{ utente }}
+          </span>
+          , non preoccuparti per il tuo ordine:
+          <span style="color: #e91e63;"> {{ ordine }} </span>.
+          <!-- {{ risposta }} -->
+        </mat-card-title>
+        <!-- {{ risposta }} -->
+      </mat-card-header>
+      {{ risposta }}
+      <br />
+      <br />
+      <img
+        class="image"
+        src="assets\Pics\clipart-phone-pink-9.png"
+        width="230"
+        height="150"
+      />
+    </div>
+
+    <!-- Caso: danneggiamento -->
+    <div *ngIf="danneggiamento" class="first-option">
+      <mat-card-header>
+        <mat-card-title style="font-size: x-large;">
+          <span style="color: #e91e63;"> {{ utente }} </span>
+          , siamo dispiaciuti per il tuo ordine:
+          <span style="color: #e91e63;"> {{ ordine }} </span>
+          .
+
+          <!-- {{ risposta }} -->
+        </mat-card-title>
+        <br />
+        Il danneggiamento compromette il funzionamento del prodotto?
+        <mat-checkbox
+          value="checked"
+          (click)="checkBox(checked)"
+          matInput
+          ngModel
+          >Si</mat-checkbox
+        >
+        <mat-checkbox
+          value="notChecked"
+          (click)="notcheckBox(notChecked)"
+          matInput
+          ngModel
+          >No</mat-checkbox
+        >
+      </mat-card-header>
+      <div>{{ risposta }}</div>
+      <br />
+      <br />
+      <div *ngIf="rispedire">
+        <img
+          class="image"
+          src="assets\Pics\index.png"
+          width="210"
+          height="150"
+        />
+      </div>
+    </div>
+
+    <!-- Caso: Non conformità  -->
+    <div *ngIf="conformita" class="first-option">
+      <mat-card-header>
+        <mat-card-title style="font-size: x-large;">
+          <span style="color: #e91e63;"> {{ utente }} </span>
+          , ci dispiace per lo sbaglio dell'ordine:
+          <span style="color: #e91e63;"> {{ ordine }} </span>.
+          <!-- {{ risposta }} -->
+        </mat-card-title>
+      </mat-card-header>
+      {{ risposta }}
+      <mat-form-field style="width:23vw; font-size: larger;">
+        <textarea
+          matInput
+          placeholder="Scrivi la tua opinione sul prodotto"
+        ></textarea>
+      </mat-form-field>
       <button
         mat-stroked-button
         style="background-color:  #e91e63;"
         class="btn-block"
-        (click)="changeChildComponent()"
+        (click)="send()"
       >
         Invia
       </button>
-    </form>
+    </div>
+
+    <!-- Caso: Altro -->
+    <div *ngIf="altro" class="first-option">
+      <mat-card-header>
+        <mat-card-title style="font-size: x-large;">
+          <span style="color: #e91e63;"> {{ utente }} </span>
+          , ti preghiamo di scriverci per l'ordine:
+          <span style="color: #e91e63;"> {{ ordine }} </span>.
+          <!-- {{ risposta }} -->
+        </mat-card-title>
+      </mat-card-header>
+      {{ risposta }}
+      <mat-form-field style="width:23vw; font-size: larger;">
+        <textarea
+          matInput
+          placeholder="Scrivi la tua opinione sul prodotto"
+        ></textarea>
+      </mat-form-field>
+      <button
+        mat-stroked-button
+        style="background-color:  #e91e63;"
+        class="btn-block"
+        (click)="send()"
+      >
+        Invia
+      </button>
+    </div>
   </mat-card>
 </div>

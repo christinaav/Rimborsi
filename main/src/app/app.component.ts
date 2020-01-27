@@ -12,32 +12,9 @@ export interface Type {
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements OnInit {
-  utente: string;
-  ordine: string;
-  reclamo: string;
-
-  types: Type[] = [
-    { viewValue: "Smarrimento" },
-    { viewValue: "Danneggiamento" },
-    { viewValue: "Non conformità" },
-    { viewValue: "Altro" }
-  ];
-
   loadComponent = false;
 
   constructor() {}
 
   ngOnInit;
-
-  onSubmit(form: NgForm) {
-    this.utente = form.value.name;
-    console.log(this.utente);
-    this.ordine = form.value.ordine;
-    console.log(this.ordine);
-    console.log(this.reclamo);
-  }
-
-  changeChildComponent() {
-    this.loadComponent = true;
-  }
 }

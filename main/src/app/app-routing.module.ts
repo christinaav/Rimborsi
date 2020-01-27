@@ -1,12 +1,12 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { WelcomeComponent } from "./welcome/welcome.component";
-import { SmarrimentoComponent } from "./smarrimento/smarrimento.component";
+import { FinishComponent } from "./finish/finish.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "welcome", pathMatch: "full" },
   { path: "welcome", component: WelcomeComponent },
-  { path: "smarrimento", component: SmarrimentoComponent }
+  { path: "ready", component: FinishComponent }
 ];
 
 @NgModule({

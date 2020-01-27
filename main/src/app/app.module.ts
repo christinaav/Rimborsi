@@ -1,10 +1,9 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MatCheckboxModule } from "@angular/material";
+import { MatCheckboxModule, MatNativeDateModule } from "@angular/material";
 import { MatButtonModule } from "@angular/material";
 import { MatInputModule } from "@angular/material/input";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
@@ -37,10 +36,10 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { WelcomeComponent } from "./welcome/welcome.component";
-import { SmarrimentoComponent } from './smarrimento/smarrimento.component';
+import { FinishComponent } from './finish/finish.component';
 
 @NgModule({
-  declarations: [AppComponent, WelcomeComponent, SmarrimentoComponent],
+  declarations: [AppComponent, WelcomeComponent, FinishComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -79,7 +78,8 @@ import { SmarrimentoComponent } from './smarrimento/smarrimento.component';
     BrowserModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent],
